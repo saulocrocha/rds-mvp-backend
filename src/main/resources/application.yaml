@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: rds-mvp-backend
+
+  flyway:
+    baseline-on-migrate: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/somoshtdb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: none
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  cloud:
+    config:
+      enabled: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${keycloak.url}/realms/${keycloak.realm}
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+server:
+  port: 8082
+
+keycloak:
+  url: http://localhost:8042/auth
+  realm: rds-dev
+  clientId: rds_mvp_dev
+  clientSecret:
+  clientIdAdmin: admin-cli
+  clientSecretAdmin:
+
+  config:
+    activate:
+      on-profile: local
+
+springdoc:
+  pathsToMatch: /**,
+  swagger-ui:
+    tagsSorter: alpha

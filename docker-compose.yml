@@ -1,0 +1,40 @@
+version: '3.7'
+
+volumes:
+  traefik_data:
+    driver: local
+
+services:
+  keycloak:
+    container_name: somosht-keycloak
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      #KC_HOSTNAME: localhost
+      #KC_HOSTNAME_PORT: 8080
+      KC_HTTP_ENABLED: true
+      KC_HTTP_RELATIVE_PATH: /auth
+      KC_HOSTNAME_STRICT_HTTPS: false
+      KC_HOSTNAME_STRICT: false
+      KC_PROXY: edge
+      KC_PROXY_ADDRESS_FORWARDING: true
+      KC_HOSTNAME_STRICT_BACKCHANNEL: "true"
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://database-1.cbqi8i02wrdv.sa-east-1.rds.amazonaws.com:5432/somoshtdb
+      KC_DB_USERNAME: master_user
+      KC_DB_PASSWORD: ylJ241156@?c
+      KC_DB_SCHEMA: oauth
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HEALTH_ENABLED: "true"
+      KC_LOG_LEVEL: info
+    command: start-dev
+    networks:
+      - somos-networks
+    ports:
+      - 8042:8080
+
+
+networks:
+  somos-networks:
+    name: somos-networks
+    driver: bridge
