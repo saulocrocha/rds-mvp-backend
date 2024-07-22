@@ -81,9 +81,9 @@
 #### Configuração do PostgreSQL
 
 - Com o PostgreSQL instalado e configurado na porta 5432:
-  1. Abra o pgAdmin.
-  2. Crie um servidor.
-  3. Crie um banco de dados com o nome "somoshtdb".
+  - Abra o pgAdmin.
+  - Crie um servidor.
+  - Crie um banco de dados com o nome "somoshtdb".
 
 ### Inicialização
 
