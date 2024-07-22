@@ -4,45 +4,28 @@
 
 ### Tecnologias Utilizadas
 
-- **[Java](https://www.java.com/pt-BR/)**
-  - Linguagem de programação orientada a objetos.
-  - **Versão:** 17
-
-- **[Spring Boot](https://spring.io/projects/spring-boot)**
-  - Framework para desenvolvimento de aplicações utilizando Java e Kotlin.
-  - **Versão:** 3.1.3
-
-- **[Spring Cloud](https://spring.io/projects/spring-cloud)**
-  - Conjunto de ferramentas para criação de aplicações distribuídas e escaláveis.
-  - **Versão:** 2023.0.2
-
-- **[Lombok](https://projectlombok.org)**
-  - Framework para reduzir a verbosidade do código Java.
-  - **Versão:** 1.18.28
-
-- **[Mapstruct](https://mapstruct.org)**
-  - Biblioteca para mapeamento de objetos Java.
-  - **Versão:** 1.5.5.Final
-
-- **[OkHttp3](https://square.github.io/okhttp/)**
-  - Cliente HTTP para Java.
-  - **Versão:** 4.11.0
-
-- **[PostgreSQL](https://www.postgresql.org)**
-  - Banco de Dados relacional baseado em SQL.
-  - **Versão:** 16.1
-
-- **[Flyway](https://flywaydb.org)**
-  - Ferramenta de versionamento do banco de dados.
-  - **Versão:** 10.16.0
-
-- **[Keycloak](https://www.keycloak.org)**
-  - Solução de gerenciamento de identidade e acesso de código aberto que fornece recursos avançados de autenticação e autorização para aplicativos e serviços
-  - **Versão:** 25.0.2
+- **[Java](https://www.java.com/pt-BR/)**: Linguagem de programação orientada a objetos.
+  - Versão: `17`
+- **[Spring Boot](https://spring.io/projects/spring-boot)**: Framework para desenvolvimento de aplicações utilizando Java e Kotlin.
+  - Versão: `3.1.3`
+- **[Spring Cloud](https://spring.io/projects/spring-cloud)**: Conjunto de ferramentas para criação de aplicações distribuídas e escaláveis.
+  - Versão: `2023.0.2`
+- **[Lombok](https://projectlombok.org)**: Framework para reduzir a verbosidade do código Java.
+  - Versão: `1.18.28`
+- **[Mapstruct](https://mapstruct.org)**: Biblioteca para mapeamento de objetos Java.
+  - Versão: `1.5.5.Final`
+- **[OkHttp3](https://square.github.io/okhttp/)**: Cliente HTTP para Java.
+  - Versão: `4.11.0`
+- **[PostgreSQL](https://www.postgresql.org)**: Banco de Dados relacional baseado em SQL.
+  - Versão: `16.1`
+- **[Flyway](https://flywaydb.org)**: Ferramenta de versionamento do banco de dados.
+  - Versão: `10.16.0`
+- **[Keycloak](https://www.keycloak.org)**: Solução de gerenciamento de identidade e acesso de código aberto que fornece recursos avançados de autenticação e autorização para aplicativos e serviços
+  - Versão: `25.0.2`
 
 ### Configuração do Ambiente
 
-#### Pré-requisitos
+1. **Pré-requisitos**:
 
 - **Java** (v17)
 - **Maven** (v3.9.5)
@@ -50,37 +33,38 @@
 - **Docker**
 - **IntelliJ IDEA** ou **Visual Studio Code**
 
-#### Instalação
+2. **Instalação**:
 
-1. Clone o repositório no local desejado:
+- Clone o repositório no local desejado:
    ```
    git clone https://github.com/saulocrocha/rds-mvp-backend.git
    ```
 
-2. Abra a IDE com suporte a Java/Spring Boot de sua escolha e importe o projeto clonado.
+- Abra a IDE com suporte a Java/Spring Boot de sua escolha e importe o projeto clonado.
 
-#### Configuração da IDE
+  #### Configuração da IDE
 
-**IntelliJ IDEA:**
-
-- Configurar o perfil:
-  - Abra as configurações de Run/Debug.
-  - Em "Modify Options", selecione "Add VM Options".
-  - No campo "VM Options", insira `-Dspring.profiles.active=local` para utilizar o perfil local.
-
-- Instalar o plugin do Docker:
-  - Abra as configurações do IntelliJ, vá para "Plugins" e instale o plugin Docker.
-
-**Visual Studio Code:**
-
-- Instalar os plugins do Spring Boot e Docker.
-
-- Configurar o perfil:
-  - Instale a extensão "dotenv".
-  - Crie um arquivo `.env` na raiz do projeto com o conteúdo `SPRING_PROFILES_ACTIVE=local`.
-
-  - Instale o plugin do Docker:
-    - Procure por "Docker" nas extensões e instale a extensão da Microsoft.
+  - IntelliJ IDEA:
+    
+    - Configurar o perfil:
+      - Abra as configurações de Run/Debug.
+      - Em "Modify Options", selecione "Add VM Options".
+      - No campo "VM Options", insira `-Dspring.profiles.active=local` para utilizar o perfil local.
+    
+    - Instalar o plugin do Docker:
+      - Abra as configurações do IntelliJ, navegue até a opção "Plugins" e instale o plugin Docker.
+    
+  - Visual Studio Code:
+    
+    - Instalar os plugins do Spring Boot:
+      - Procure por "Spring Boot Dashboard" nas extensões e instale a extensão da Microsoft.
+    
+    - Configurar o perfil:
+      - Instale a extensão "dotenv".
+      - Crie um arquivo `.env` na raiz do projeto com o conteúdo `SPRING_PROFILES_ACTIVE=local`.
+    
+    - Instale o plugin do Docker:
+      - Procure por "Docker" nas extensões e instale a extensão da Microsoft.
 
 #### Configuração do PostgreSQL
 
