@@ -2,7 +2,7 @@
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 
-### Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **[Java](https://www.java.com/pt-BR/)**: Linguagem de programação orientada a objetos.
   - Versão: `17`
@@ -23,75 +23,71 @@
 - **[Keycloak](https://www.keycloak.org)**: Solução de gerenciamento de identidade e acesso de código aberto que fornece recursos avançados de autenticação e autorização para aplicativos e serviços
   - Versão: `25.0.2`
 
-### Configuração do Ambiente
+## Configuração do Ambiente
 
 1. **Pré-requisitos**:
-
-- **Java** (v17)
-- **Maven** (v3.9.5)
-- **PostgreSQL** (v16.1)
-- **Docker**
-- **IntelliJ IDEA** ou **Visual Studio Code**
+    - Java (v17)
+    - Maven (v3.9.5)
+    - PostgreSQL (v16.1)
+    - Docker
+    - IntelliJ IDEA** ou **Visual Studio Code
 
 2. **Instalação**:
 
-- Clone o repositório no local desejado:
-   ```
-   git clone https://github.com/saulocrocha/rds-mvp-backend.git
-   ```
-
-- Abra a IDE com suporte a Java/Spring Boot de sua escolha e importe o projeto clonado.
-
-  #### Configuração da IDE
-
-  - IntelliJ IDEA:
+    - Clone o repositório no local desejado:
+       ```
+       git clone https://github.com/saulocrocha/rds-mvp-backend.git
+       ```
     
-    - Configurar o perfil:
-      - Abra as configurações de Run/Debug.
-      - Em "Modify Options", selecione "Add VM Options".
-      - No campo "VM Options", insira `-Dspring.profiles.active=local` para utilizar o perfil local.
+    - Abra a IDE com suporte a Java/Spring Boot de sua escolha e importe o projeto clonado.
+
+      #### Configuração da IDE
     
-    - Instalar o plugin do Docker:
-      - Abra as configurações do IntelliJ, navegue até a opção "Plugins" e instale o plugin Docker.
-    
-  - Visual Studio Code:
-    
-    - Instalar os plugins do Spring Boot:
-      - Procure por "Spring Boot Dashboard" nas extensões e instale a extensão da Microsoft.
-    
-    - Configurar o perfil:
-      - Instale a extensão "dotenv".
-      - Crie um arquivo `.env` na raiz do projeto com o conteúdo `SPRING_PROFILES_ACTIVE=local`.
-    
-    - Instale o plugin do Docker:
-      - Procure por "Docker" nas extensões e instale a extensão da Microsoft.
+      - IntelliJ IDEA:
+        
+        - Configurar o perfil:
+          - Abra as configurações de Run/Debug.
+          - Em "Modify Options", selecione "Add VM Options".
+          - No campo "VM Options", insira `-Dspring.profiles.active=local` para utilizar o perfil local.
+        
+        - Instalar o plugin do Docker:
+          - Abra as configurações do IntelliJ, navegue até a opção "Plugins" e instale o plugin Docker.
+        
+      - Visual Studio Code:
+        
+        - Instalar os plugins do Spring Boot:
+          - Procure por "Spring Boot Dashboard" nas extensões e instale a extensão da Microsoft.
+        
+        - Configurar o perfil:
+          - Instale a extensão "dotenv".
+          - Crie um arquivo `.env` na raiz do projeto com o conteúdo `SPRING_PROFILES_ACTIVE=local`.
+        
+        - Instale o plugin do Docker:
+          - Procure por "Docker" nas extensões e instale a extensão da Microsoft.
 
-#### Configuração do PostgreSQL
+      #### Configuração do PostgreSQL
+      
+      - Com o PostgreSQL instalado e configurado na porta 5432:
+        - Abra o pgAdmin.
+        - Crie um servidor.
+        - Crie um banco de dados com o nome "somoshtdb".
 
-- Com o PostgreSQL instalado e configurado na porta 5432:
-  - Abra o pgAdmin.
-  - Crie um servidor.
-  - Crie um banco de dados com o nome "somoshtdb".
+3. **Inicialização**
+    - Na IDE de sua escolha, abra o projeto e navegue até `src/main/java/br/com/somos/mvp_rds_backend`.
+    - Abra o arquivo `RdsMvpBackendApplication.java` e execute-o utilizando as ferramentas da IDE.
 
-### Inicialização
-
-- Na IDE de sua escolha, abra o projeto e navegue até `src/main/java/br/com/somos/mvp_rds_backend`.
-- Abra o arquivo `RdsMvpBackendApplication.java` e execute-o utilizando as ferramentas da IDE.
-
-### Padronização de Merges
-
-Para contribuições ao projeto, utilize os seguintes padrões de commits:
-
-- **feat:** Nova funcionalidade ou componente.
-- **chore:** Alterações não relacionadas a correção ou funcionalidade.
-- **fix:** Correção de bug.
-- **refactor:** Reestruturação do código sem alterar comportamento.
-- **docs:** Atualizações na documentação.
-- **style:** Alterações que não afetam o significado do código (formatação, etc.).
-- **perf:** Melhorias de desempenho.
-- **ci:** Alterações relacionadas à integração contínua.
-- **build:** Mudanças no sistema de compilação ou dependências externas.
-- **revert:** Reversão de um commit anterior.
+## Padronização de Merges
+ 
+- `feat: Mensagem:` Novo componente e/ou Funcionalidade é introduzido com as mudanças.
+- `chore: Mensagem:`  Alterações que não estão relacionadas a uma correção ou recurso e não modificam arquivos src ou de teste (por exemplo, atualização de dependências).
+- `fix: Mensagem:` Correção de bug.
+- `refactor: Mensagem:` Reescrevem/reestruturam seu código, porém não alteram nenhum comportamento
+- `docs: Mensagem:` Atualizações na documentação, como o README ou outros arquivos markdown.
+- `style: Mensagem:` Alterações que não afetam o significado do código, provavelmente relacionadas à formatação do código, como espaço em branco, falta de ponto e vírgula e assim por diante.
+- `perf: Mensagem:` Melhorias de desempenho.
+- `ci: Mensagem:` Integração contínua relacionada.
+- `build: Mensagem:` Mudanças que afetam o sistema de compilação ou dependências externas.
+- `revert: Mensagem:` Reverte um commit anterior.
 
 ---
 
