@@ -13,6 +13,7 @@ spring:
     properties:
       hibernate:
         ddl-auto: none
+        default_schema: rds
         dialect: org.hibernate.dialect.PostgreSQLDialect
   cloud:
     config:
@@ -34,7 +35,7 @@ keycloak:
   clientId: rds_mvp_dev
   clientSecret:
   clientIdAdmin: admin-cli
-  clientSecretAdmin:
+  clientSecretAdmin: tolvYkflGwgjvbQNhLnme98eVXhTEH4Y
 
   config:
     activate:

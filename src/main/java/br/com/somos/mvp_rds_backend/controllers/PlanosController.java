@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/planos")
-@Tag(name = "Planos")
+@Tag(name = "Planos", description = "Serviços disponíveis para gerenciamento de planos no sistema")
 @RequiredArgsConstructor
 @Log4j2
 public class PlanosController {

@@ -1,11 +1,12 @@
 package br.com.somos.mvp_rds_backend.dto;
 
-import br.com.somos.mvp_rds_backend.enums.SimNaoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,10 +19,22 @@ public class UsuarioDTO {
 
     private String dsSenha;
 
-    private SimNaoEnum snAtivo;
-
     private LocalDateTime dtCriacao;
 
-    private Integer cdPlano;
+    private String cdCpf;
+
+    private String dsEmail;
+
+    private LocalDateTime dtInicio;
+
+    private LocalDateTime dtFim;
+
+    private String dsNomeCompleto;
+
+    private LocalDate dtNascimento;
+
+    private String nrTelefone;
+
+    private List<PerfisDTO> perfis;
 
 }

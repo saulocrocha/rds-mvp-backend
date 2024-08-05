@@ -1,6 +1,5 @@
 package br.com.somos.mvp_rds_backend.models.rds;
 
-import br.com.somos.mvp_rds_backend.enums.SimNaoEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,14 +30,22 @@ public class Usuario implements Serializable {
     @Column(name = "DS_SENHA")
     private String dsSenha;
 
-    @Column(name = "SN_ATIVO")
-    private SimNaoEnum snAtivo;
-
     @Column(name = "DT_CRIACAO")
     private LocalDateTime dtCriacao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CD_PLANO", referencedColumnName = "CD_PLANO")
-    private Plano plano;
+    @Column(name = "CD_CPF")
+    private String cdCpf;
+
+    @Column(name = "DS_EMAIL")
+    private String dsEmail;
+
+    @Column(name = "DT_INICIO")
+    private LocalDateTime dtInicio;
+
+    @Column(name = "DT_FIM")
+    private LocalDateTime dtFim;
+
+    @Column(name = "CD_KEYCLOAK")
+    private String cdKeycloak;
 
 }

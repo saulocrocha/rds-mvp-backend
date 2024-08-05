@@ -2,11 +2,15 @@ package br.com.somos.mvp_rds_backend.services;
 
 import br.com.somos.mvp_rds_backend.dto.LoginDTO;
 import br.com.somos.mvp_rds_backend.dto.UsuarioAutenticadoDTO;
+import br.com.somos.mvp_rds_backend.models.rds.Usuario;
+import br.com.somos.mvp_rds_backend.repositories.UsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nimbusds.jwt.SignedJWT;
 import jakarta.annotation.Nullable;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +18,13 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class AuthService {
 
     private static final String CONTENT_TYPE = "Content-Type";
@@ -27,6 +33,8 @@ public class AuthService {
     private static final String NAME = "name";
     private static final String PREFERRED_USERNAME = "preferred_username";
     private static final String EMAIL = "email";
+
+    private final UsuarioRepository repository;
 
     @Value("${keycloak.clientId}")
     private String clientId;
@@ -44,9 +52,29 @@ public class AuthService {
 
         OkHttpClient client = new OkHttpClient();
 
+        Optional<Usuario> usuario = repository.findUsuarioByDsLoginOrDsEmailOrCdCpf(dto.getUser());
+
+        String loginDB = null;
+        String senhaCriptografada = null;
+
+        if (usuario.isPresent()){
+
+            loginDB = usuario.get().getDsLogin();
+
+            if (BCrypt.checkpw(dto.getPassword(), usuario.get().getDsSenha())){
+
+                senhaCriptografada = usuario.get().getDsSenha();
+
+            }
+
+        }
+
         MediaType mediaType = MediaType.parse(APPLICATION_FORM_URLENCODED_VALUE);
-        String payload = String.format("client_id=%s&username=%s&password=%s&grant_type=password", this.clientId,
-                dto.getUser(), dto.getPassword());
+        String payload = String.format(
+                "client_id=%s&username=%s&password=%s&grant_type=password",
+                this.clientId,
+                loginDB != null ? loginDB : dto.getUser(),
+                senhaCriptografada != null ? senhaCriptografada : dto.getPassword());
         return montarBody(client, mediaType, payload);
     }
 

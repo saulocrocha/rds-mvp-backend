@@ -115,6 +115,22 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-admin-client</artifactId>
+			<version>11.0.3</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.mail</groupId>
+					<artifactId>javax.mail</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.mindrot</groupId>
+			<artifactId>jbcrypt</artifactId>
+			<version>0.4</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

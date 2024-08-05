@@ -1,13 +1,8 @@
 package br.com.somos.mvp_rds_backend.mappers;
 
-import br.com.somos.mvp_rds_backend.dto.PessoaDTO;
-import br.com.somos.mvp_rds_backend.models.rds.Pessoa;
 import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.WARN, imports = { StringUtils.class })
 public interface PessoaMapper {

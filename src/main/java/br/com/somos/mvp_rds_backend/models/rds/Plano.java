@@ -1,5 +1,6 @@
 package br.com.somos.mvp_rds_backend.models.rds;
 
+import br.com.somos.mvp_rds_backend.enums.TipoPlanoEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -30,5 +31,8 @@ public class Plano implements Serializable {
 
     @Column(name = "VL_PRECO")
     private Double vlPreco;
+
+    @Column(name = "TP_PLANO")
+    private TipoPlanoEnum tpPlano;
 
 }

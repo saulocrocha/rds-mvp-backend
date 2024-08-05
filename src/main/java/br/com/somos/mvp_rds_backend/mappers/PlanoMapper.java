@@ -2,9 +2,9 @@ package br.com.somos.mvp_rds_backend.mappers;
 
 import br.com.somos.mvp_rds_backend.dto.PlanoDTO;
 import br.com.somos.mvp_rds_backend.models.rds.Plano;
+import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
