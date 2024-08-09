@@ -37,4 +37,14 @@ public class UsuarioDTO {
 
     private List<PerfisDTO> perfis;
 
+    private List<PlanoDTO> planos;
+
+    private String cdConseslhoProfissional;
+
+    private String cdUfProfissional;
+
+    private String nmGuerraProfissional;
+
+    private Integer cdOeProfissional;
+
 }

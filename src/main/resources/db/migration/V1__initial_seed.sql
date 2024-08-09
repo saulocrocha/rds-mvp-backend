@@ -2249,7 +2249,7 @@ ALTER TABLE rds.tb_pessoa_receituario OWNER TO master_user;
 CREATE TABLE rds.tb_plano (
     cd_plano bigint NOT NULL,
     ds_plano character varying(100) NOT NULL,
-    vl_preco numeric(10,2) NOT NULL,
+    vl_preco double precision NOT NULL,
     tp_plano character varying(3)
 );
 

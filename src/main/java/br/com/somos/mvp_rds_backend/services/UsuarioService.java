@@ -2,19 +2,15 @@ package br.com.somos.mvp_rds_backend.services;
 
 import br.com.somos.mvp_rds_backend.configurations.HttpClientBuilderFactory;
 import br.com.somos.mvp_rds_backend.dto.PerfisDTO;
+import br.com.somos.mvp_rds_backend.dto.PlanoDTO;
 import br.com.somos.mvp_rds_backend.dto.UsuarioDTO;
 import br.com.somos.mvp_rds_backend.exceptions.CodigosErrosNegociais;
 import br.com.somos.mvp_rds_backend.exceptions.NegocioException;
 import br.com.somos.mvp_rds_backend.mappers.UsuarioMapper;
-import br.com.somos.mvp_rds_backend.models.rds.Perfil;
-import br.com.somos.mvp_rds_backend.models.rds.PerfilUsuario;
-import br.com.somos.mvp_rds_backend.models.rds.Pessoa;
-import br.com.somos.mvp_rds_backend.models.rds.Usuario;
+import br.com.somos.mvp_rds_backend.models.rds.*;
 import br.com.somos.mvp_rds_backend.models.rds.ids.PerfilUsuarioId;
-import br.com.somos.mvp_rds_backend.repositories.PerfilRepository;
-import br.com.somos.mvp_rds_backend.repositories.PerfilUsuarioRepository;
-import br.com.somos.mvp_rds_backend.repositories.PessoaRepository;
-import br.com.somos.mvp_rds_backend.repositories.UsuarioRepository;
+import br.com.somos.mvp_rds_backend.models.rds.ids.UsuarioPlanosId;
+import br.com.somos.mvp_rds_backend.repositories.*;
 import br.com.somos.mvp_rds_backend.utils.Utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.core.util.Json;
@@ -31,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -68,6 +65,9 @@ public class UsuarioService {
     private final PessoaRepository pessoaRepository;
     private final PerfilRepository perfilRepository;
     private final PerfilUsuarioRepository perfilUsuarioRepository;
+
+    private final PlanoRepository planoRepository;
+    private final UsuarioPlanosRepository usuarioPlanosRepository;
 
     private final HttpClientBuilderFactory factory;
 
@@ -113,9 +113,14 @@ public class UsuarioService {
                 var usuarioSalvo = this.repository.save(usuario);
 
                 log.info("===========> Iniciando salvar perfis vinculados ao usuário ");
-                log.info("===========> perfis = {} ", dto.getPerfis().stream().map(PerfisDTO::dsPerfil).toList());
+                log.info("===========> perfis = {} ", dto.getPerfis().stream().map(PerfisDTO::getDsPerfil).toList());
                 cadastrarPerfisUsuario(dto, usuarioSalvo);
                 log.info("===========> Fim salvar perfis vinculados ao usuário ");
+
+                log.info("===========> Iniciando salvar planos vinculados ao usuário ");
+                log.info("===========> planos = {} ", dto.getPlanos().stream().map(PlanoDTO::getDsPlano).toList());
+                cadastrarPlanosUsuario(dto,usuarioSalvo);
+                log.info("===========> Fim salvar planos vinculados ao usuário ");
 
                 log.info("===========> Iniciando salvar usuário no KEYCLOAK");
                 String codigoKeycloak = cadastrarUsuarioKeycloak(dto, null, pessoa, usuarioSalvo.getDsSenha());
@@ -232,7 +237,7 @@ public class UsuarioService {
 
     @NotNull
     private List<String> montarPerfis(UsuarioDTO dto) {
-        return dto.getPerfis().stream().map(PerfisDTO::cdPerfil)
+        return dto.getPerfis().stream().map(PerfisDTO::getCdPerfil)
                 .map(this.perfilRepository::findById)
                 .map(Optional::orElseThrow)
                 .map(Perfil::getDsPerfil)
@@ -241,9 +246,17 @@ public class UsuarioService {
 
     private void cadastrarPerfisUsuario(UsuarioDTO dto, Usuario usuarioSalvo) {
         dto.getPerfis().forEach(perfisDTO -> {
-            var perfil = this.perfilRepository.findById(perfisDTO.cdPerfil())
+            var perfil = this.perfilRepository.findById(perfisDTO.getCdPerfil())
                     .orElseThrow(() -> new NegocioException("Perfil não localizado", CodigosErrosNegociais.PRF001));
             perfilUsuarioRepository.save(new PerfilUsuario(new PerfilUsuarioId(usuarioSalvo, perfil)));
+        });
+    }
+
+    private void cadastrarPlanosUsuario(UsuarioDTO dto, Usuario usuarioSalvo) {
+        dto.getPlanos().forEach(planosDto -> {
+            var plano = this.planoRepository.findById(planosDto.getCdPlano())
+                    .orElseThrow(() -> new NegocioException("Plano não localizado", CodigosErrosNegociais.PLA001));
+            usuarioPlanosRepository.save(new UsuarioPlanos(new UsuarioPlanosId(usuarioSalvo, plano, LocalDate.now()),null,null));
         });
     }
 

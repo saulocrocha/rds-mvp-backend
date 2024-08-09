@@ -1,4 +1,13 @@
 package br.com.somos.mvp_rds_backend.dto;
 
-public record PerfisDTO (Integer cdPerfil, String dsPerfil){
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@RequiredArgsConstructor
+public class PerfisDTO {
+
+    private Integer cdPerfil;
+    private String dsPerfil;
+
 }

@@ -20,8 +20,9 @@ public class SecurityConfiguration {
     private static final String SWAGGER_API_DOCS = "/v3/api-docs/**";
     private static final String AUTH = "/auth";
     private static final String REFRESH_TOKEN = "/refreshToken";
-
     private static final String API = "/api";
+
+    private static final String USER_REGISTRATION = "/usuarios";
 
     private final JwtAuthConverter jwtAuthConverter;
 
@@ -30,8 +31,11 @@ public class SecurityConfiguration {
 
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests(authz -> authz.requestMatchers(SWAGGER).permitAll()
-                        .requestMatchers(SWAGGER_API_DOCS).permitAll().requestMatchers(API + AUTH).permitAll()
-                        .requestMatchers(API + AUTH + REFRESH_TOKEN).permitAll().anyRequest().authenticated());
+                        .requestMatchers(SWAGGER_API_DOCS).permitAll()
+                        .requestMatchers(API + AUTH).permitAll()
+                        .requestMatchers(API + USER_REGISTRATION).permitAll()
+                        .requestMatchers(API + AUTH + REFRESH_TOKEN).permitAll()
+                        .anyRequest().authenticated());
 
         http. oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthConverter);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

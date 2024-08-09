@@ -42,6 +42,8 @@ public enum CodigosErrosNegociais implements NegocioException.Codigo {
 
     PRF001("Perfil não localizado"),
 
+    PLA001("Plano não localizado"),
+
     EMAIL001("Falha ao enviar o email de primeiro acesso");
 
     private final String descricao;
